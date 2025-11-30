@@ -14,7 +14,7 @@ import type { DashboardStats, LogsResponse, LogDetails, LogType } from "@/types/
 export default function SIEMDashboard() {
   const [selectedType, setSelectedType] = useState<LogType | "all">("all")
   const [currentPage, setCurrentPage] = useState(1)
-  const [selectedLogId, setSelectedLogId] = useState<string | null>(null)
+  const [selectedLogId, setSelectedLogId] = useState<number | null>(null)
   const limit = 20
 
   // Fetch dashboard stats
@@ -57,7 +57,7 @@ export default function SIEMDashboard() {
     setCurrentPage(1)
   }
 
-  const handleLogClick = (logId: string) => {
+  const handleLogClick = (logId: number) => {
     setSelectedLogId(logId)
   }
 

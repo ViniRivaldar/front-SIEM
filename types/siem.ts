@@ -8,20 +8,52 @@ export interface DashboardStats {
 }
 
 export interface Log {
-  id: string
+  id: number
   timestamp: string
-  source_ip: string
-  log_type: string
-  short_description: string
+  action: string
+  status: string
+  email: string
+  ip: string
+  user_agent: string
+  threat_score: number
+  method?: string
+  protocol?: string
+}
+
+export interface LogAnalysis {
+  id: number
+  log_id: number
+  threat_score: number
+  confidence: string
+  detection_rule: string
+  priority: string
+  mitre_matches: MitreMatch[]
+  recommended_actions: string[]
+  notes: string | null
+  created_at: string
+}
+
+export interface MitreMatch {
+  tactic: string
+  technique_id: string
+  technique_name: string
+  rationale: string
 }
 
 export interface LogDetails extends Log {
-  destination_ip?: string
-  user_agent?: string
-  severity?: string
-  raw_log?: string
-  ai_processed_info?: string
-  recommendations?: string
+  email_raw?: string
+  headers?: Record<string, any>
+  request_body?: string
+  threats?: any
+  reason?: string | null
+  user_id?: number | null
+  response_time?: number
+  db_query_time?: number | null
+  request_size?: number
+  user_exists?: boolean | null
+  error_message?: string | null
+  error_stack?: string | null
+  analysis?: LogAnalysis
 }
 
 export interface LogsResponse {
